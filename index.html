@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Dole Survey"><link rel="manifest" href="manifest.webmanifest"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0b5c73"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><title>Dole PLC Phase 2 Survey (Local)</title>
+<style>
+:root{--bg:#eef2f3;--sf:#fff;--ink:#14232b;--mut:#5b6b73;--ln:#d3dbdf;--ac:#0b5c73;--acx:#fff;--yl:#fff6c2;--yb:#d9b800;--ok:#1f7a4d;--wr:#a15c00;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a1f;--sf:#17262d;--ink:#e6eef1;--mut:#9fb1b9;--ln:#2d4049;--ac:#1d7f9b;--yl:#2f2b10;--yb:#7a6a00;--ok:#4cc38a;--wr:#e0a040}}
+:root[data-theme="dark"]{--bg:#0f1a1f;--sf:#17262d;--ink:#e6eef1;--mut:#9fb1b9;--ln:#2d4049;--ac:#1d7f9b;--yl:#2f2b10;--yb:#7a6a00;--ok:#4cc38a;--wr:#e0a040}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+header{background:var(--ac);color:var(--acx);padding:14px 16px}
+.hin{max-width:1200px;margin:auto;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between}
+h1{font-size:1.25rem;margin:0}
+header p{margin:2px 0 0;opacity:.85;font-size:.9rem}
+.meta{display:flex;flex-wrap:wrap;gap:8px}
+.meta label{font-size:.8rem;display:block}
+header input{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.45);color:#fff;border-radius:6px;padding:8px;font:inherit;min-height:40px;color-scheme:dark}
+.sum{max-width:1200px;margin:12px auto 0;padding:0 16px}
+.bar{height:8px;background:var(--ln);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .25s}
+.sum p{margin:6px 0 0;color:var(--mut);font-size:.9rem}
+.wrap{display:grid;grid-template-columns:minmax(300px,380px) 1fr;gap:16px;padding:16px;max-width:1200px;margin:auto;align-items:start}
+.panel{background:var(--sf);border:1px solid var(--ln);border-radius:10px}
+#list{padding:10px}
+.flt{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.flt input{grid-column:1/-1}
+input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--sf);border:1px solid var(--ln);border-radius:6px;padding:10px;min-height:44px}
+:focus-visible{outline:3px solid var(--ac);outline-offset:1px}
+.it{display:grid;grid-template-columns:1fr auto;gap:2px 10px;width:100%;text-align:left;font:inherit;color:inherit;background:none;border:0;border-top:1px solid var(--ln);padding:10px 6px;cursor:pointer;align-items:center}
+.it:hover,.it.on{background:var(--bg)}
+.it.on{box-shadow:inset 3px 0 0 var(--ac)}
+.dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--mut);grid-column:1;grid-row:1/3}
+.s1 .dot{border-color:var(--wr);background:linear-gradient(90deg,var(--wr) 50%,transparent 50%)}
+.s2 .dot{border-color:var(--ok);background:var(--ok)}
+.nm{grid-column:1;grid-row:1;font-weight:600}.it small{grid-column:1;grid-row:2;color:var(--mut);display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}.site{font-size:.72rem;font-weight:700;letter-spacing:.03em;padding:1px 7px;border-radius:4px;border:1px solid currentColor;line-height:1.5}.site.DPOL{color:var(--ac)}.site.DUVO{color:var(--wr)}
+.tag{font-size:.78rem;color:var(--mut);grid-column:2;grid-row:1/3;text-align:right;white-space:nowrap}
+.s2 .tag{color:var(--ok)}.s1 .tag{color:var(--wr)}
+#formp{padding:18px}
+h2{margin:0;font-size:1.3rem}
+.sub{margin:2px 0 14px;color:var(--mut)}
+fieldset{border:0;border-top:1px solid var(--ln);margin:0;padding:12px 0 4px}
+legend{font-weight:700;padding:0 8px 0 0}
+.fld{margin-bottom:12px}
+.fld label{display:block;font-size:.9rem;margin-bottom:4px}
+#formp input,#formp select,#formp textarea{background:var(--yl);border-color:var(--yb)}
+textarea{min-height:76px;resize:vertical}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.iot{border:1px solid var(--ln);border-radius:8px;padding:10px;margin-bottom:10px}.iot b{display:block;margin-bottom:8px}.ior{display:grid;grid-template-columns:1fr 88px 44px;gap:8px;margin-bottom:8px}.ior .btn{padding:0}
+.hint{color:var(--mut);font-size:.85rem;margin:0 0 12px}
+.nav{display:flex;justify-content:space-between;gap:8px;margin-top:12px}
+.btn{font:inherit;background:var(--sf);color:var(--ink);border:1px solid var(--ln);border-radius:6px;padding:8px 14px;min-height:42px;cursor:pointer}
+.btn.p{background:var(--ac);color:var(--acx);border-color:var(--ac)}
+header .btn{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+.back{display:none;margin-bottom:10px}
+.empty{padding:40px 18px;text-align:center;color:var(--mut)}
+dialog{max-width:680px;width:92%;background:var(--sf);color:var(--ink);border:1px solid var(--ln);border-radius:10px}
+dialog textarea{min-height:240px;font:.8rem/1.4 ui-monospace,Menlo,Consolas,monospace;background:var(--bg);border-color:var(--ln)}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+[hidden]{display:none!important}
+.tabs{max-width:1200px;margin:12px auto 0;padding:0 16px;display:flex;gap:4px;border-bottom:1px solid var(--ln)}
+.tab{font:inherit;color:var(--mut);background:none;border:0;border-bottom:3px solid transparent;padding:10px 18px;min-height:44px;cursor:pointer}
+.tab.on{color:var(--ink);border-bottom-color:var(--ac);font-weight:600}
+.rep{max-width:1200px;margin:0 auto;padding:16px}
+.rbar{display:flex;align-items:center;gap:10px;margin-bottom:14px}.rbar select{width:auto}
+.rsite{display:flex;align-items:baseline;gap:10px;margin:18px 0 10px;font-size:1.1rem}.rsite .cnt{color:var(--mut);font-weight:400;font-size:.9rem}
+.rc{background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:14px 16px;margin-bottom:12px}
+.rh{display:flex;align-items:center;justify-content:space-between;gap:10px}.rh h3{margin:0;font-size:1.05rem}
+.rh .tag{margin-left:auto}
+.rc .sub{margin:2px 0 6px}
+.rc dl{margin:8px 0 0;display:grid;grid-template-columns:minmax(120px,210px) 1fr;gap:6px 14px}
+.rc dt{color:var(--mut);font-size:.9rem}.rc dd{margin:0;overflow-wrap:anywhere;white-space:pre-wrap}
+.rc dd.na{color:var(--mut);font-style:italic}
+.rc dt.rgrp{grid-column:1/-1;color:var(--ink);font-weight:700;font-size:1rem;margin-top:8px;padding-top:10px;border-top:1px solid var(--ln)}
+.rc .btn{min-height:36px;padding:4px 12px}
+.pgrp{margin-bottom:10px}.ph{display:flex;align-items:center;gap:8px;padding:8px 8px;background:var(--bg);border-radius:6px;margin-top:6px}.ph b{flex:1;font-size:1rem}.ph .cnt{color:var(--mut);font-size:.8rem;white-space:nowrap}.ph .btn{min-height:32px;padding:2px 10px;font-size:.85rem}
+.it.sub{margin-left:14px;width:calc(100% - 14px);border-top:0;border-left:2px solid var(--ln);padding-left:12px}.it.sub.on{box-shadow:none;border-left-color:var(--ac)}.none{color:var(--mut);font-size:.9rem;padding:8px 6px 8px 28px}
+.sgrp{margin-bottom:14px}.sh{display:flex;align-items:center;gap:8px;padding:10px 2px 8px;border-bottom:2px solid var(--ac)}.sh .site{font-size:.9rem;padding:2px 10px}.sh .cnt{flex:1;color:var(--mut);font-size:.8rem}.sh .btn{min-height:32px;padding:2px 10px;font-size:.85rem}.sgrp>.pgrp{margin-left:10px}.site{color:var(--ink)}
+.mg{margin-bottom:12px}.mrow{display:grid;grid-template-columns:1fr auto auto auto;gap:8px;align-items:center;margin-bottom:6px}.mrow.s1{margin-left:16px}.mrow.s2{margin-left:32px}.mrow .cnt{color:var(--mut);font-size:.8rem;white-space:nowrap;min-width:48px;text-align:right}.mrow.s0 input{font-weight:700}.mrow .btn{min-height:40px}#mdlg{max-height:90vh;overflow:auto}
+.mloc{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:-2px 0 8px;color:var(--mut);font-size:.85rem}.mloc .btn{min-height:34px;padding:2px 10px;font-size:.85rem}
+.rproc{display:flex;align-items:baseline;gap:10px;margin:16px 0 8px 12px;padding-left:10px;border-left:3px solid var(--ac);font-size:1.02rem}.rproc .cnt{color:var(--mut);font-weight:400;font-size:.85rem}.rs .rc{margin-left:24px}
+@media (max-width:600px){.mrow{grid-template-columns:1fr 1fr 1fr}.mrow input{grid-column:1/-1}.mrow.s1{margin-left:8px}.mrow.s2{margin-left:16px}}
+.subrow{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin:0 0 14px}.subrow .sub{margin:0}.subrow .btn{min-height:38px;padding:4px 12px}
+.prow{display:grid;grid-template-columns:1fr auto auto auto;gap:8px;align-items:center;margin-bottom:8px}.prow .cnt{color:var(--mut);font-size:.85rem;white-space:nowrap}
+@media (max-width:600px){.prow{grid-template-columns:1fr 1fr 1fr}.prow input{grid-column:1/-1}}
+@media (max-width:600px){.rc dl{grid-template-columns:1fr;gap:0}.rc dt{margin-top:8px}}
+footer{max-width:1200px;margin:0 auto;padding:0 16px 24px;color:var(--mut);font-size:.85rem}
+@media (max-width:860px){.wrap{grid-template-columns:1fr}.wrap.f #list{display:none}.wrap:not(.f) #formp{display:none}.back{display:inline-block}.g2{grid-template-columns:1fr}}
+#pa{display:none}
+@page{size:A4 portrait;margin:12mm}
+@media print{body{background:#fff}body>*:not(#pa){display:none!important}#pa{display:block;color:#000;font:12pt/1.4 Arial,sans-serif}.pg{break-after:page}.pg:last-child{break-after:auto}.pg h2{margin:0}.pg p{margin:2px 0 10px}.pt{width:100%;border-collapse:collapse}.pt th,.pt td{border:1px solid #777;padding:7px 9px;text-align:left;vertical-align:top;height:34px;white-space:pre-wrap}.pt th{width:36%;background:#eee}.pt.sm th,.pt.sm td{height:auto;padding:4px 6px;font-size:10pt}.pt.lst th{width:auto}.pg .note{font-size:9pt;color:#444;margin:6px 0 10px}.pt.full{margin-top:12px}.pt.full th,.pt.full td{width:auto;height:auto;padding:3px 4px;font-size:7.5pt;word-break:break-word}.pt.full thead{display:table-header-group}.pt.full tr{break-inside:avoid}.pt.full th{background:#e8e8e8}}
+@media print{#pa{font:10pt/1.4 Arial,sans-serif;--sf:#fff;--ln:#999;--mut:#444;--ink:#000;--ok:#000;--wr:#000;--ac:#000}#pa h1{font-size:16pt;margin:0 0 4px}#pa .note{font-size:9pt;margin:0 0 10px}#pa .rsite{font-size:13pt;margin:14px 0 8px;break-after:avoid;border-bottom:2px solid #000;padding-bottom:3px}#pa .rc{border:1px solid #999;border-radius:0;padding:8px 10px;margin:0 0 8px;break-inside:avoid;background:#fff}#pa .rc .btn{display:none}#pa .rh h3{font-size:11pt}#pa .rc dl{grid-template-columns:150px 1fr;gap:3px 10px;margin-top:4px}#pa .rc dt,#pa .rc dd{font-size:9pt}#pa .rc dt.rgrp{margin-top:5px;padding-top:5px;font-size:9.5pt}#pa .site{border-color:#000;color:#000}#pa .rproc{font-size:11.5pt;margin:10px 0 6px 6px;padding-left:8px;border-left:3px solid #000;break-after:avoid}#pa .rs .rc{margin-left:16px}}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+
+body{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+#dash,#menu{max-width:720px;margin:0 auto;padding:0 16px 16px}
+#dash .sum{padding:0;margin:12px 0 0}
+.kp{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.kp div{background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:10px 4px;text-align:center}.kp b{display:block;font-size:1.5rem}.kp span{font-size:.78rem;color:var(--mut)}
+.wide{width:100%;margin-bottom:12px}#dcards .bar{margin:10px 0 6px}#dcards .rc{margin-left:0}
+a.btn{display:inline-flex;align-items:center;text-decoration:none}
+.mp{padding:14px 16px;margin:12px 0}.mp h2{font-size:1.05rem;margin-bottom:10px}.mb{display:block;width:100%;text-align:left;margin-bottom:8px}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}*{-webkit-tap-highlight-color:transparent}
+input,select,textarea,dialog textarea{font-size:16px!important}input[type=date]{-webkit-appearance:none;appearance:none;min-height:44px;text-align:left}
+button,.btn,.it,.bn button{touch-action:manipulation;-webkit-user-select:none;user-select:none}
+dialog{max-height:88vh;max-height:88dvh;overflow:auto;-webkit-overflow-scrolling:touch}
+html{overscroll-behavior-y:contain}.bn button{-webkit-tap-highlight-color:transparent}
+.phg{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-top:8px}.th{position:relative}.th img{width:100%;height:110px;object-fit:cover;border-radius:8px;border:1px solid var(--ln);display:block;cursor:zoom-in}.th .btn{position:absolute;top:4px;right:4px;min-height:30px;padding:2px 10px}
+.rphh{margin:12px 0 6px;font-size:.95rem}.rph{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));gap:10px;margin:0 0 10px}.rph figure{margin:0;break-inside:avoid}.rphh{break-after:avoid}.rph img{cursor:zoom-in}
+@media (max-width:700px){.rph{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;-webkit-overflow-scrolling:touch;padding-bottom:6px}.rph figure{flex:0 0 62%;scroll-snap-align:start}.rph img{max-height:45vh}}.rph img{width:100%;height:auto;max-height:75vh;object-fit:contain;border-radius:6px;border:1px solid var(--ln);break-inside:avoid}
+@media print{#pa .rph{display:block;overflow:visible;font-size:0;line-height:0}#pa .rph figure{display:inline-block;width:49%;vertical-align:top;margin:0 .5% 8px;text-align:center;page-break-inside:avoid;break-inside:avoid;-webkit-column-break-inside:avoid}#pa .rph img{display:block;width:100%;height:auto;max-height:9cm;object-fit:contain;page-break-inside:avoid;break-inside:avoid}#pa .rphh{page-break-after:avoid;break-after:avoid}#pa .rc.hasph{break-inside:auto}}
+.bn{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(4,1fr);background:var(--sf);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0px)}
+.bn button{font:inherit;font-size:.75rem;color:var(--mut);background:none;border:0;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer}
+.bn button.on{color:var(--ac);font-weight:700}.bn svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media (min-width:861px){.wrap{max-width:900px}}
+</style>
+</head>
+<body>
+<header><div class="hin"><div><h1>Dole PLC Upgrade Phase 2</h1><p>Machine site survey</p></div></div></header>
+
+<main id="dash"><div class="sum"><div class="bar"><i id="pb"></i></div><p id="st"></p></div><div id="dcards"></div></main>
+<div class="wrap" id="wrap" hidden>
+ <div class="panel" id="list">
+  <div class="row" style="margin:0 0 8px"><button class="btn p" id="pm" style="flex:1">Manage Site and Process</button></div>
+  <div class="flt">
+   <input id="q" type="search" placeholder="Search machine or section" aria-label="Search machines">
+   <select id="fs" aria-label="Filter by site"><option value="">All sites</option><option>DPOL</option><option>DUVO</option></select>
+   <select id="ft" aria-label="Filter by status"><option value="">All statuses</option><option value="0">Not started</option><option value="1">In progress</option><option value="2">Done</option></select>
+  </div>
+  <div id="items"></div>
+ </div>
+ <div class="panel" id="formp"><div class="empty">Select a machine to start its survey.</div></div>
+</div>
+<div class="rep" id="rep" hidden><div class="rbar"><label for="rg" hidden>Group by</label><select id="rg" hidden><option value="p">Process</option><option value="s">Site</option><option value="b">PLC brand</option></select><label for="rf">Show</label><select id="rf"><option value="d">Machines with entries</option><option value="all">All machines</option></select><button class="btn p" id="pdf2" style="margin-left:auto">Save PDF (A4)</button><button class="btn" id="prt2">Print</button></div><div id="rb"></div></div>
+<section id="menu" hidden>
+<div class="panel mp"><h2>Survey details</h2><div class="fld"><label for="by">Surveyor</label><input id="by" placeholder="Name"></div><div class="fld"><label for="dt">Survey date</label><input id="dt" type="date"></div></div>
+<div class="panel mp"><h2>Tools</h2><button class="btn mb" id="mpm">Manage sites, processes and locations</button><button class="btn mb" id="exp">Export / restore</button><button class="btn mb" id="pdfm">Save report as PDF (A4)</button><button class="btn mb" id="prt">Print report</button><div class="fld" style="margin-top:6px"><label for="thm">Appearance</label><select id="thm"><option value="">Match device</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div>
+<div class="panel mp"><h2>Help</h2><p class="hint" style="margin:0">Fill the yellow fields. Mark each machine as in Phase 2, not in Phase 2, or to confirm. Photos of the PLC rack and HMI nameplate are welcome. Questions: Alvin Rolda, Controtek Solutions, alvin.rolda@controtek.com. Entries save in this browser only, so use Export / restore to keep a copy.</p></div></section>
+<nav class="bn" aria-label="Main">
+<button data-t="d" class="on" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>Dashboard</button>
+<button data-t="s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5h10v16H5V5h4"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 13l2 2 4-4"/></svg>Survey</button>
+<button data-t="r"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h7"/></svg>Report</button>
+<button data-t="m"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu</button></nav>
+<dialog id="dlg">
+ <h2>Export / restore</h2>
+ <div class="row"><select id="fmt" aria-label="Format"><option value="tsv">Excel paste (tab-separated, same columns as the checklist)</option><option value="json">Backup (JSON)</option></select></div>
+ <textarea id="out" aria-label="Export text"></textarea>
+ <div class="row"><button class="btn p" id="cp">Copy</button><button class="btn" id="ld">Replace data with this JSON</button><button class="btn" id="sh">Share</button><button class="btn" id="cl">Close</button></div>
+ <p class="hint" id="msg"></p>
+</dialog>
+<dialog id="pdlg"><h2>Manage processes</h2>
+ <div class="fld" hidden><label for="pnew">New process name</label><div class="row" style="margin:0"><input id="pnew" placeholder="e.g. Cold Storage" style="flex:1"><button class="btn p" id="pnadd">Add process</button></div></div>
+ <div id="plist"></div><p class="hint" id="pmsg"></p><div class="row"><button class="btn" id="pcl">Close</button></div></dialog>
+<dialog id="mdlg"><h2>Manage sites and processes</h2>
+ <div class="fld"><label for="msn">Add a site</label><div class="row" style="margin:0"><input id="msn" placeholder="e.g. DPOL" style="flex:1"><button class="btn p" id="msa">Add site</button></div></div>
+ <p class="hint">To rename a site, process or PLC, edit its name and press Rename. Deleting a site or process also deletes the PLCs under it.</p>
+ <div id="mtree"></div><p class="hint" id="mmsg"></p><div class="row"><button class="btn" id="mcl">Close</button></div></dialog>
+<dialog id="sdlg"><h2>Add site</h2>
+ <div class="fld"><label for="snm">Site name</label><input id="snm" placeholder="e.g. DPOL"></div>
+ <div class="row"><button class="btn p" id="sok">Add site</button><button class="btn" id="scl">Cancel</button></div><p class="hint" id="smsg"></p></dialog>
+<dialog id="npd"><h2>Add process</h2>
+ <div class="fld"><label for="npn">Process name</label><input id="npn" placeholder="e.g. Cold Storage"></div>
+ <div class="fld"><label for="nps">Site</label><select id="nps"><option>DPOL</option><option>DUVO</option></select></div>
+ <div class="fld"><label for="npm">First PLC / machine in this process</label><input id="npm" placeholder="e.g. Cold Storage PLC 1"></div>
+ <div class="row"><button class="btn p" id="npok">Add process</button><button class="btn" id="npcl">Cancel</button></div><p class="hint">More PLCs can be added to this process from any of its machine forms.</p><p class="hint" id="npmsg"></p></dialog>
+<dialog id="adlg"><h2>Add PLC / machine</h2>
+ <div class="fld"><label for="ap">Process</label><select id="ap"></select></div>
+ <div class="fld"><label for="as">Site</label><select id="as"><option>DPOL</option><option>DUVO</option></select></div>
+ <div class="fld"><label for="an">PLC / machine name</label><input id="an" placeholder="e.g. Packaging Line 5, second PLC"></div>
+ <div class="row"><button class="btn p" id="aok">Add</button><button class="btn" id="acl">Cancel</button></div><p class="hint" id="amsg"></p></dialog>
+<dialog id="pfd"><h2>Printing is blocked here</h2><p class="hint">Your browser does not allow printing from inside this page. Copy the report as text, paste it into Notes, Mail or Pages, then print from there (Share, then Print).</p><div class="row"><button class="btn p" id="pfx">Copy report as text</button><button class="btn" id="pfs">Share report file</button><button class="btn" id="pfc">Close</button></div><p class="hint" id="pmsg2"></p></dialog>
+<input type="file" id="phi" accept="image/*" multiple hidden>
+<dialog id="pvd"><img id="pvi" alt="Machine photo" style="max-width:100%;max-height:70vh;display:block;margin:0 auto 10px"><div class="row"><button class="btn" id="pvc">Close</button></div></dialog>
+<div id="pa"></div>
+<script>
+const BASE0=[["DUVO Ginaca Fruit Counter","DUVO","Processing"],["Sugar Room","DPOL","FRPC"],["Rapak Control Upgrade","DPOL","Processing"],["Shinwa 8 Control Upgrade","DPOL","Packaging"],["Shinwa 6 Filler Control Upgrade","DPOL","Processing"],["Shinwa 6 Sealer Control Upgrade","DPOL","Processing"],["Gel Blending Control Upgrade","DPOL","Processing"],["Bossar Binnig Control Upgrade","DPOL","Packaging"],["Line Jar Cooker Control Upgrade","DPOL","Processing"],["FMC Pasteurizer","DPOL","Processing"],["8 oz Welder Control Upgrade","DPOL","Can Plant"],["Packaging Line 5","DPOL","Packaging"],["Scanico","DPOL","IQF"],["Decanter","DUVO","Juice Plant"],["Bulk Aseptic 1","DUVO","Juice Plant"],["Lantech Case Former","DUVO","202 Packaging"],["P.E. Labeller","DUVO","202 Packaging"],["Labeller (old)","DUVO","202 Packaging"],["MSBT","DPOL","FRPC"],["CHP Rotojet","DPOL","FRPC"],["Ginaca Counter","DPOL","FRPC"],["GEA Pasteurizer","DPOL","Processing"],["Welder Line 1","DPOL","Can Plant"],["Corima Leak Tester","DPOL","Can Plant"],["L/C 8","DPOL","Packaging"],["PCFP Production Monitoring","DPOL","PCFP"],["CF 1 Sealer","DPOL","PCFP"],["CF 2 Sealer Tall Cup","DPOL","PCFP"],["M-TEK Blending System","DPOL","PCFP"],["Octofrost","DPOL","IQF"],["Banana Ripening","DPOL","IQF"],["Minster 202","DPOL","Can Plant"],["Shrink Wrap","DUVO","202 Packaging"],["Separator","DUVO","Juice Plant"]];
+const BASE=[];
+let M=BASE.slice();
+const G=[
+{t:"Scope",f:[["p2","In Phase 2?","sel",["Yes","No","To confirm"]]]},
+{t:"PLC",f:[["brand","PLC brand","sel",["Siemens","Allen Bradley","Beckhoff","Keyence","Omron","Other"]],["bo","Other PLC brand (specify)","txt","Mitsubishi"],["model","PLC model / series","txt","SLC 500"],["cpu","CPU part number","txt","1747-L542"],["fw","CPU firmware version","txt","FRN 10"]]},
+{t:"Local HMI",h:1,f:[["hmi","Local HMI connected?","sel",["Yes","No"]],["hb","HMI brand","sel",["Siemens","Schneider Electric","Rockwell Automation (Allen-Bradley)","Mitsubishi Electric","Omron","Weintek","Delta Electronics","Pro-face","Beijer Electronics","ABB","Kinco","Other"]],["ho","Other HMI brand (specify)","txt","Mitsubishi"],["hm","HMI model","txt","PanelView 600 2711-K6C"],["hp","HMI to PLC protocol","txt","DH-485"],["hx","HMI to PLC port or cable","txt","1747-CP3 cable"]]},
+{t:"Remarks",f:[["rem","Remarks","area","Backup on laptop in E&I office"]]}];
+const COLS=["No","Machine / equipment","Site","Section","In Phase 2?","PLC brand","PLC model / series","CPU part number","CPU firmware version","I/O cards (part number x quantity)","Communication cards (part number x quantity)","Local HMI connected?","HMI brand","HMI model","HMI to PLC communication (protocol, port or cable)","Remarks"];
+const KEYS=["p2","brand","model","cpu","fw","io","comm","hmi","hb","hm","hc","rem"];
+const KEY="ctk-dole-p2-survey-v2";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let S={by:"",date:"",d:{}},cur=null;
+try{const r=localStorage.getItem(KEY);if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+function mig(){if(!S.m){S.m=BASE.map(b=>({n:b[0],s:b[1],p:b[2]})).concat((S.x||[]).map(x=>({n:x.n,s:x.s,p:x.p,a:1})));delete S.x}if(!S.pa)S.pa=[];if(!S.st)S.st=["DPOL","DUVO"];if(!S.loc)S.loc={}}
+const syncM=()=>{M=S.m.map(x=>[x.n,x.s,x.p,x.a?1:0])};mig();syncM();
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const IOT={AI:"Analog input (AI)",AO:"Analog output (AO)",DI:"Digital input (DI)",DO:"Digital output (DO)"};
+const tr=x=>String(x||"").trim();
+const rows=(i,t)=>(((S.d[i]||{}).ioc||{})[t])||[];
+const ioBad=i=>[...Object.keys(IOT),"CC"].some(t=>rows(i,t).some(x=>!!tr(x.p)!==!!tr(x.q)));
+const ccStr=i=>rows(i,"CC").filter(x=>tr(x.p)&&tr(x.q)).map(x=>tr(x.p)+" x "+tr(x.q)).join("; ");
+const ioStr=i=>Object.keys(IOT).map(t=>{const r=rows(i,t).filter(x=>tr(x.p)&&tr(x.q));return r.length?t+": "+r.map(x=>tr(x.p)+" x "+tr(x.q)).join(", "):""}).filter(Boolean).join("; ");
+const v=(i,k)=>k==="io"?ioStr(i):k==="comm"?ccStr(i):k==="hc"?[v(i,"hp"),v(i,"hx")].filter(Boolean).join(", "):((S.d[i]||{})[k]||"").trim();
+function ccBlock(i){
+ const c=(S.d[i]??={}).ioc??={};
+ const r=c.CC&&c.CC.length?c.CC:(c.CC=[{p:"",q:""}]);
+ return`<div class="fld"><label>Communication cards</label><p class="hint">Enter the part number and quantity of each communication card. Add a row for each different part number. Write None in the part number box and 0 as the quantity if no card is installed.</p><div class="iot">`+r.map((x,n)=>`<div class="ior"><input data-io="CC" data-n="${n}" data-f="p" value="${esc(x.p)}" placeholder="Part number" aria-label="Communication card part number"><input type="number" min="0" inputmode="numeric" data-io="CC" data-n="${n}" data-f="q" value="${esc(x.q)}" placeholder="Qty" aria-label="Communication card quantity"><button class="btn" data-del="CC" data-n="${n}" aria-label="Remove communication card row">&times;</button></div>`).join("")+`<button class="btn" data-add="CC">Add communication card</button></div></div>`;
+}
+function ioBlock(i){
+ const c=(S.d[i]??={}).ioc??={};
+ return`<div class="fld"><label>I/O cards</label><p class="hint">For each card type, enter the part number and quantity. Add a row for each different part number.</p>`+Object.keys(IOT).map(t=>{
+  const r=c[t]&&c[t].length?c[t]:(c[t]=[{p:"",q:""}]);
+  return`<div class="iot"><b>${IOT[t]}</b>`+r.map((x,n)=>`<div class="ior"><input data-io="${t}" data-n="${n}" data-f="p" value="${esc(x.p)}" placeholder="Part number" aria-label="${t} part number"><input type="number" min="0" inputmode="numeric" data-io="${t}" data-n="${n}" data-f="q" value="${esc(x.q)}" placeholder="Qty" aria-label="${t} quantity"><button class="btn" data-del="${t}" data-n="${n}" aria-label="Remove ${t} row">&times;</button></div>`).join("")+`<button class="btn" data-add="${t}">Add ${t} part number</button></div>`;
+ }).join("")+"</div>";
+}
+function st(i){
+ if(!KEYS.some(k=>v(i,k))&&!((S.d[i]||{}).ph||[]).length)return 0;
+ const p=v(i,"p2");if(!p)return 1;if(p==="No")return 2;
+ if(!["brand","model","cpu","fw","io","comm"].every(k=>v(i,k))||v(i,"brand")==="Other"&&!v(i,"bo")||ioBad(i))return 1;
+ const h=v(i,"hmi");if(!h)return 1;
+ if(h==="Yes"&&(!["hb","hm","hp","hx"].every(k=>v(i,k))||v(i,"hb")==="Other"&&!v(i,"ho")))return 1;
+ return 2;
+}
+const LBL=["Not started","In progress","Done"];
+function stats(){
+ const s=M.map((_,i)=>st(i)),done=s.filter(x=>x==2).length;
+ const c=x=>M.filter((_,i)=>v(i,"p2")===x).length;
+ $("#pb").style.width=done/M.length*100+"%";
+ $("#st").textContent=`${done} of ${M.length} machines done. In Phase 2: ${c("Yes")}. Not in Phase 2: ${c("No")}. To confirm: ${c("To confirm")}.`;
+}
+function list(){
+ fillSites();
+ const q=$("#q").value.toLowerCase(),fs=$("#fs").value,ft=$("#ft").value;
+ const ok=i=>{const m=M[i],s=st(i);return!(fs&&m[1]!==fs||ft!==""&&String(s)!==ft||q&&!(m[0]+" "+m[2]).toLowerCase().includes(q))};
+ const filt=fs||ft!==""||q;
+ const html=siteList().map(s=>{
+  const sx=M.map((_,i)=>i).filter(i=>M[i][1]===s),pl=[...new Set(sx.map(i=>M[i][2]))];
+  const body=pl.map(p=>{
+   const ix=sx.filter(i=>M[i][2]===p),vis=ix.filter(ok);
+   if(filt&&!vis.length)return"";
+   const d=ix.filter(i=>st(i)===2).length;
+   return`<section class="pgrp"><div class="ph"><b>${esc(p)}</b><span class="cnt">${ix.length} PLC${ix.length===1?"":"s"}, ${d} done</span><button class="btn" data-addp="${esc(p)}" data-site="${s}">+ PLC</button></div>`+vis.map(i=>{
+    const m=M[i],k=st(i),ph=v(i,"p2");
+    return`<button class="it sub s${k}${cur===i?" on":""}" data-i="${i}"><span class="nm">${esc(m[0])}</span><span class="tag">${LBL[k]}</span><small>${ph?`<span>Phase 2: ${ph}</span>`:"<span>Phase 2 not set</span>"}</small></button>`}).join("")+"</section>";
+  }).join("");
+  if(!body&&(filt||sx.length))return"";
+  const sd=sx.filter(i=>st(i)===2).length;
+  return`<section class="sgrp"><div class="sh"><span class="site ${s}">${s}</span><span class="cnt">${pl.length} process${pl.length===1?"":"es"}, ${sx.length} PLC${sx.length===1?"":"s"}, ${sd} done</span><button class="btn" data-addsite="${s}">+ Process</button></div>${body||'<div class="none">No processes yet. Press + Process.</div>'}</section>`;
+ }).join("");
+ $("#items").innerHTML=html||`<div class="empty">${M.length?"No machines match.":"No processes yet. Press Add process to create your first process and PLC."}</div>`;
+}
+function fld(i,[k,l,t,o]){
+ const val=v(i,k);let c;
+ if(t==="sel")c=`<select id="f-${k}" data-k="${k}"><option value="">Select</option>${o.map(x=>`<option${x===val?" selected":""}>${x}</option>`).join("")}</select>`;
+ else if(t==="area")c=`<textarea id="f-${k}" data-k="${k}" placeholder="e.g. ${esc(o)}">${esc(S.d[i]?.[k]||"")}</textarea>`;
+ else c=`<input id="f-${k}" data-k="${k}" value="${esc(S.d[i]?.[k]||"")}" placeholder="e.g. ${esc(o)}">`;
+ return`<div class="fld"><label for="f-${k}">${l}</label>${c}</div>`;
+}
+function open(i,keep){
+ cur=i;const m=M[i];
+ let h=`<button class="btn back" id="back">Back to machines</button><h2>${i+1}. ${esc(m[0])}</h2><div class="subrow"><p class="sub"><span class="site ${m[1]}">${m[1]}</span> ${esc(m[2])} section</p><button class="btn" id="addhere">+ Add another PLC / machine in this process</button></div><p class="hint">Grey examples show the expected format. Write "None" if a card type is not installed.</p>`;
+ G.forEach(g=>{
+  if(g.t==="Remarks")h+=photoBlock(i);
+  h+=`<fieldset><legend>${g.t}</legend>`;
+  if(g.h){h+=fld(i,g.f[0])+`<div id="hmix" ${v(i,"hmi")==="Yes"?"":"hidden"}>`+fld(i,g.f[1])+`<div id="hbw" ${v(i,"hb")==="Other"?"":"hidden"}>${fld(i,g.f[2])}</div>`+g.f.slice(3).map(f=>fld(i,f)).join("")+"</div>"}
+  else if(g.t==="PLC")h+=`<div class="g2">${fld(i,g.f[0])}<div id="bow" ${v(i,"brand")==="Other"?"":"hidden"}>${fld(i,g.f[1])}</div>${g.f.slice(2,5).map(f=>fld(i,f)).join("")}</div>`+ioBlock(i)+ccBlock(i);
+  else h+=g.f.map(f=>fld(i,f)).join("");
+  h+="</fieldset>";
+ });
+ h+=`<div class="nav"><button class="btn" id="pv"${i?"":" disabled"}>Previous machine</button><button class="btn p" id="nx"${i<M.length-1?"":" disabled"}>Next machine</button></div>`+(m[3]?`<div class="nav"><button class="btn" id="rm">Remove this added machine</button></div>`:"");
+ $("#formp").innerHTML=h;$("#wrap").classList.add("f");list();if(!keep)scrollTo(0,0);
+}
+$("#items").onclick=e=>{
+ const a=e.target.closest("[data-addp]");
+ if(a){const p=a.dataset.addp,si=a.dataset.site;addM(p,si);$("#an").value=`${p} PLC ${M.filter(x=>x[2]===p&&x[1]===si).length+1}`;$("#an").select();return}
+ const ps=e.target.closest("[data-addsite]");
+ if(ps){openNP();$("#nps").value=ps.dataset.addsite;return}
+ const b=e.target.closest(".it");if(b)open(+b.dataset.i)};
+$("#formp").addEventListener("click",e=>{
+ const id=e.target.id,a=e.target.dataset;
+ if(id==="phb"){$("#phi").click();return}
+ if(a.view){if(PH[a.view]){$("#pvi").src=PH[a.view];$("#pvd").showModal()}return}
+ if(a.rph){if(!e.target.dataset.sure){e.target.dataset.sure=1;e.target.textContent="Delete?";return}rmPh(cur,a.rph);return}
+ if(a.add){const r=S.d[cur].ioc[a.add];r.push({p:"",q:""});save();open(cur,true);document.querySelector(`[data-io="${a.add}"][data-n="${r.length-1}"][data-f="p"]`)?.focus();return}
+ if(a.del){S.d[cur].ioc[a.del].splice(+a.n,1);save();list();stats();open(cur,true);return}
+ if(id==="back"){$("#wrap").classList.remove("f");scrollTo(0,0)}
+ if(id==="pv")open(cur-1);if(id==="nx")open(cur+1);
+ if(id==="addhere"){addM();const p=M[cur][2];$("#an").value=`${p} PLC ${M.filter(x=>x[2]===p).length+1}`;$("#an").select()}
+ if(id==="rm"){if(!e.target.dataset.sure){e.target.dataset.sure=1;e.target.textContent="Click again to remove this machine and its data";return}rmx(cur)}
+});
+$("#formp").addEventListener("input",e=>{
+ const t=e.target.dataset.io;
+ if(t){S.d[cur].ioc[t][+e.target.dataset.n][e.target.dataset.f]=e.target.value;save();list();stats();return}
+ const k=e.target.dataset.k;if(!k)return;
+ (S.d[cur]??={})[k]=e.target.value;
+ if(k==="hmi")$("#hmix").hidden=e.target.value!=="Yes";
+ if(k==="brand")$("#bow").hidden=e.target.value!=="Other";
+ if(k==="hb")$("#hbw").hidden=e.target.value!=="Other";
+ save();list();stats();
+});
+["q","fs","ft"].forEach(id=>$("#"+id).addEventListener("input",list));
+$("#by").value=S.by;$("#dt").value=S.date;
+$("#by").oninput=e=>{S.by=e.target.value;save()};
+$("#dt").oninput=e=>{S.date=e.target.value;save()};
+function dump(){
+ if($("#fmt").value==="json")return JSON.stringify(S,null,1);
+ const cl=x=>String(x||"").replace(/[\t\r\n]+/g," ").trim();
+ return [COLS.join("\t")].concat(M.map((m,i)=>[i+1,m[0],m[1],m[2]].concat(KEYS.map(k=>(k==="brand"||k==="hb")&&v(i,k)==="Other"?(v(i,k==="brand"?"bo":"ho")||"Other"):v(i,k))).map(cl).join("\t"))).join("\n");
+}
+$("#exp").onclick=()=>{$("#out").value=dump();$("#msg").textContent="";$("#dlg").showModal()};
+$("#fmt").onchange=()=>{$("#out").value=dump();$("#msg").textContent=""};
+$("#cl").onclick=()=>$("#dlg").close();
+$("#sh").onclick=async()=>{try{if(!navigator.share)throw 0;await navigator.share({title:"Dole PLC survey export",text:$("#out").value})}catch(e){if(e&&e.name==="AbortError")return;$("#msg").textContent="Sharing is not available here. Use Copy instead."}};
+$("#cp").onclick=async()=>{
+ const t=$("#out");t.focus();t.select();t.setSelectionRange(0,t.value.length);
+ try{await navigator.clipboard.writeText(t.value);$("#msg").textContent="Copied."}
+ catch(e){try{document.execCommand("copy");$("#msg").textContent="Copied."}catch(x){$("#msg").textContent="Select the text and copy it manually."}}
+};
+$("#ld").onclick=()=>{
+ try{
+  const j=JSON.parse($("#out").value);
+  if(!j||typeof j.d!=="object")throw 0;
+  S={by:j.by||"",date:j.date||"",d:j.d,x:Array.isArray(j.x)?j.x:[],m:Array.isArray(j.m)?j.m:undefined,pa:Array.isArray(j.pa)?j.pa:[],st:Array.isArray(j.st)?j.st:undefined,loc:j.loc&&typeof j.loc==="object"?j.loc:undefined};mig();syncM();if(cur!==null&&cur>=M.length)cur=null;save();
+  $("#by").value=S.by;$("#dt").value=S.date;list();stats();if(cur!==null)open(cur);if(!$("#rep").hidden)report();
+  $("#msg").textContent="Backup loaded.";
+ }catch(e){$("#msg").textContent="That is not a valid backup. Choose Backup (JSON) and paste the full backup text."}
+};
+const pbn=i=>v(i,"brand")==="Other"?(v(i,"bo")||"Other"):v(i,"brand");
+const hbn=i=>v(i,"hb")==="Other"?(v(i,"ho")||"Other"):v(i,"hb");
+const qty=(i,t)=>rows(i,t).reduce((a,x)=>a+(tr(x.p)&&tr(x.q)?(+x.q||0):0),0);
+const FH=["No","Machine / equipment","Section","Status","In Phase 2?","PLC brand","PLC model / series","CPU part number","CPU firmware version","I/O cards (part number x quantity)","Communication cards (part number x quantity)","Local HMI connected?","HMI brand","HMI model","HMI to PLC protocol","HMI to PLC port or cable","Remarks"];
+const fullRow=i=>{const hy=v(i,"hmi")==="Yes";return[i+1,M[i][0],M[i][2],LBL[st(i)],v(i,"p2"),pbn(i),v(i,"model"),v(i,"cpu"),v(i,"fw"),v(i,"io"),v(i,"comm"),v(i,"hmi"),hy?hbn(i):"",hy?v(i,"hm"):"",hy?v(i,"hp"):"",hy?v(i,"hx"):"",v(i,"rem")]};
+function summary(){
+ const row=(l,x)=>`<tr><th>${l}</th><td>${esc(x)}</td></tr>`;
+ return["DPOL","DUVO"].map(s=>{
+  const ix=M.map((_,i)=>i).filter(i=>M[i][1]===s),act=ix.filter(i=>v(i,"p2")!=="No");
+  const n=f=>ix.filter(f).length,p=x=>n(i=>v(i,"p2")===x);
+  const tally=f=>{const c={};act.forEach(i=>{const b=f(i);if(b)c[b]=(c[b]||0)+1});return Object.entries(c).map(([k,q])=>k+" ("+q+")").join(", ")||"None entered"};
+  const tot=t=>act.reduce((a,i)=>a+qty(i,t),0);
+  return`<section class="pg"><h2>Survey summary: ${s} site</h2><p>Surveyor: ${esc(S.by)||"__________"} Date: ${esc(S.date)||"__________"}</p><table class="pt sm">`+
+   row("Machines on checklist",ix.length)+row("Survey status",`Done ${n(i=>st(i)===2)}, In progress ${n(i=>st(i)===1)}, Not started ${n(i=>st(i)===0)}`)+
+   row("In Phase 2?",`Yes ${p("Yes")}, No ${p("No")}, To confirm ${p("To confirm")}, Not answered ${p("")}`)+
+   row("PLC brands",tally(pbn))+row("Machines with local HMI",`Yes ${n(i=>v(i,"hmi")==="Yes")}, No ${n(i=>v(i,"hmi")==="No")}`)+row("HMI brands",tally(i=>v(i,"hmi")==="Yes"?hbn(i):""))+
+   row("Card totals (quantity)",`AI ${tot("AI")}, AO ${tot("AO")}, DI ${tot("DI")}, DO ${tot("DO")}, Communication ${tot("CC")}`)+
+   `</table><p class="note">Brands and card totals exclude machines marked not in Phase 2.</p><table class="pt full"><thead><tr>${FH.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>`+
+   ix.map(i=>"<tr>"+fullRow(i).map(x=>`<td>${esc(x)}</td>`).join("")+"</tr>").join("")+"</tbody></table></section>";
+ }).join("");
+}
+function printAll(){
+ const done=M.filter((_,i)=>st(i)===2).length,c=x=>M.filter((_,i)=>v(i,"p2")===x).length;
+ const gb="site, then process, then PLC";
+ $("#pa").innerHTML=`<h1>Dole PLC Upgrade Phase 2: machine site survey report</h1><p class="note">Surveyor: ${esc(S.by)||"-"}. Survey date: ${esc(S.date)||"-"}. Grouped by ${gb}. Machines done: ${done} of ${M.length}. In Phase 2: ${c("Yes")}. Not in Phase 2: ${c("No")}. To confirm: ${c("To confirm")}.</p>`+(reportHTML()||'<p class="note">No survey entries yet.</p>');
+ let ok=0;const f=()=>{ok=1};addEventListener("beforeprint",f,{once:true});
+ try{print()}catch(e){}
+ setTimeout(()=>{removeEventListener("beforeprint",f);if(!ok)pfb()},1200);
+}
+function repDoc(){return"<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Dole PLC Phase 2 survey report</title><style>"+document.querySelector("style").textContent+"#pa{display:block!important;padding:12px}body{padding-bottom:0}</style></head><body>"+$("#pa").outerHTML+"</body></html>"}
+function pfb(){$("#pmsg2").textContent="";$("#pfd").showModal()}
+$("#pfs").onclick=async()=>{const f=new File([repDoc()],"Dole_PLC_Phase2_Survey_Report.html",{type:"text/html"});try{if(!navigator.canShare||!navigator.canShare({files:[f]}))throw 0;await navigator.share({files:[f],title:"Dole PLC survey report"})}catch(e){if(e&&e.name==="AbortError")return;$("#pmsg2").textContent="Sharing a file is not available here. Try Copy report as text."}};
+$("#pfx").onclick=()=>{const d=document.createElement("div");d.style.cssText="position:fixed;left:-9999px;top:0;width:700px";d.innerHTML=$("#pa").innerHTML;document.body.appendChild(d);const t=d.innerText.replace(/\n{3,}/g,"\n\n");d.remove();const a=document.createElement("textarea");a.value=t;a.style.cssText="position:fixed;top:0;left:0;opacity:0";document.body.appendChild(a);a.focus();a.select();a.setSelectionRange(0,t.length);let ok=false;try{ok=document.execCommand("copy")}catch(e){}a.remove();$("#pmsg2").textContent=ok?"Report copied. Paste it into Notes, Mail or Pages, then print from there.":"Copy failed. Try Share report file."};
+$("#pfc").onclick=()=>$("#pfd").close();
+const dl=(l,x)=>`<dt>${l}</dt><dd${x?"":' class="na"'}>${x?esc(x):"Not entered"}</dd>`;
+const dlm=(l,a)=>a.length?`<dt>${l}</dt><dd>${a.map(esc).join("\n")}</dd>`:"";
+const crd=(i,t)=>rows(i,t).filter(x=>tr(x.p)||tr(x.q)).map(x=>(tr(x.p)||"?")+" x "+(tr(x.q)||"?"));
+function card(i){
+ const m=M[i],hy=v(i,"hmi")==="Yes",s=st(i);
+ const io=Object.keys(IOT).map(t=>dlm(IOT[t],crd(i,t))).join("")||dl("I/O cards","");
+ const cc=dlm("Communication cards",crd(i,"CC"))||dl("Communication cards","");
+ return`<article class="rc s${s}${phIds(i).length?" hasph":""}"><div class="rh"><h3>${esc(m[0])}</h3><span class="tag">${LBL[s]}</span><button class="btn" data-edit="${i}">Edit in survey</button></div><p class="sub">${esc((pbn(i)+" "+v(i,"model")).trim()||"PLC not entered")}</p><dl>`+
+  dl("In Phase 2?",v(i,"p2"))+`<dt class="rgrp">PLC</dt>`+dl("Brand",pbn(i))+dl("Model / series",v(i,"model"))+dl("CPU part number",v(i,"cpu"))+dl("CPU firmware version",v(i,"fw"))+io+cc+
+  `<dt class="rgrp">Local HMI</dt>`+dl("Connected",v(i,"hmi"))+(hy?dl("Brand",hbn(i))+dl("Model",v(i,"hm"))+dl("Protocol",v(i,"hp"))+dl("Port or cable",v(i,"hx")):"")+
+  "</dl>"+phGal(i)+`<dl><dt class="rgrp">Remarks</dt>`+dl("Remarks",v(i,"rem"))+"</dl></article>";
+}
+function reportHTML(){
+ const all=$("#rf").value==="all";
+ const ix=M.map((_,i)=>i).filter(i=>all||st(i)>0);
+ return siteList().map(s=>{
+  const sx=ix.filter(i=>M[i][1]===s);
+  if(!sx.length)return"";
+  const pl=[...new Set(sx.map(i=>M[i][2]))];
+  return`<section class="rs"><h2 class="rsite"><span class="site ${s}">${s}</span><span class="cnt">${pl.length} process${pl.length===1?"":"es"}, ${sx.length} PLC${sx.length===1?"":"s"}, ${sx.filter(i=>st(i)===2).length} done</span><span class="cnt">${locTxt(s)}</span></h2>`+pl.map(p=>{
+   const r=sx.filter(i=>M[i][2]===p);
+   return`<h3 class="rproc">${esc(p)}<span class="cnt">${r.length} PLC${r.length===1?"":"s"}, ${r.filter(i=>st(i)===2).length} done</span></h3>`+r.map(card).join("");
+  }).join("")+"</section>";
+ }).join("");
+}
+function report(){$("#rb").innerHTML=reportHTML()||'<div class="empty">No survey entries yet. Start in the Survey tab.</div>'}
+function dash(){
+ const n=M.length,sv=M.map((_,i)=>st(i)),k=x=>sv.filter(y=>y===x).length,c=x=>M.filter((_,i)=>v(i,"p2")===x).length,nx=sv.findIndex(x=>x!==2);
+ let h=`<div class="kp"><div><b>${k(2)}</b><span>Done</span></div><div><b>${k(1)}</b><span>In progress</span></div><div><b>${k(0)}</b><span>Not started</span></div></div><div class="kp"><div><b>${c("Yes")}</b><span>In Phase 2</span></div><div><b>${c("No")}</b><span>Not in Phase 2</span></div><div><b>${c("To confirm")}</b><span>To confirm</span></div></div>`;
+ h+=!n?'<div class="empty">No machines yet. Open Menu, then Manage sites, to add a site and its PLCs.</div>':nx<0?'<p class="hint">All machines are done.</p>':`<button class="btn p wide" data-go="${nx}">Continue: ${esc(M[nx][0])}</button>`;
+ h+=siteList().map(s=>{const ix=M.map((_,i)=>i).filter(i=>M[i][1]===s),d=ix.filter(i=>st(i)===2).length,l=(S.loc||{})[s];
+  return`<div class="rc"><div class="rh"><h3><span class="site ${s}">${esc(s)}</span></h3><span class="tag">${d} of ${ix.length} done</span></div><div class="bar"><i style="width:${ix.length?d/ix.length*100:0}%"></i></div><p class="sub">${esc(locTxt(s))}</p><div class="row"><button class="btn" data-site="${esc(s)}">Open survey</button>${l?`<a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps?q=${l.lat},${l.lng}">View map</a>`:""}</div></div>`}).join("");
+ $("#dcards").innerHTML=h;
+}
+function tab(n,np){
+ if(!np){try{history.pushState({t:n},"")}catch(e){}}
+ $("#dash").hidden=n!=="d";$("#wrap").hidden=n!=="s";$("#rep").hidden=n!=="r";$("#menu").hidden=n!=="m";
+ document.querySelectorAll(".bn button").forEach(b=>{const on=b.dataset.t===n;b.classList.toggle("on",on);b.setAttribute("aria-current",on?"page":"false")});
+ if(n==="d")dash();if(n==="r")report();
+ scrollTo(0,0);
+}
+$(".bn").onclick=e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.t==="s"&&!$("#wrap").hidden)$("#wrap").classList.remove("f");tab(b.dataset.t)};
+$("#dcards").onclick=e=>{const g=e.target.closest("[data-go]");if(g){tab("s");open(+g.dataset.go);return}const b=e.target.closest("button[data-site]");if(b){tab("s");$("#fs").value=b.dataset.site;list()}};
+$("#mpm").onclick=()=>$("#pm").click();
+const TK="ctk-dole-theme",setTh=t=>{if(t)document.documentElement.dataset.theme=t;else delete document.documentElement.dataset.theme};
+try{const t=localStorage.getItem(TK)||"";$("#thm").value=t;setTh(t)}catch(e){}
+$("#thm").onchange=e=>{setTh(e.target.value);try{localStorage.setItem(TK,e.target.value)}catch(x){}};
+$("#rf").onchange=report;$("#rg").onchange=report;
+$("#rep").addEventListener("click",e=>{const n=e.target.dataset.edit;if(n!==undefined){tab("s");open(+n)}});
+const procs=()=>[...new Set(M.map(m=>m[2]).concat(S.pa||[]))].sort((a,b)=>a.localeCompare(b));
+const openNP=()=>{$("#npn").value="";$("#npm").value="";$("#npmsg").textContent="";$("#npd").showModal();$("#npn").focus()};
+$("#npcl").onclick=()=>$("#npd").close();
+$("#npok").onclick=()=>{
+ const p=$("#npn").value.trim();
+ if(!p){$("#npmsg").textContent="Type the process name.";return}
+ if(M.some(x=>x[1]===$("#nps").value&&x[2].toLowerCase()===p.toLowerCase())){$("#npmsg").textContent="That process already exists in this site. Use Manage Site and Process to edit it.";return}
+ S.m.push({n:$("#npm").value.trim()||p+" PLC 1",s:$("#nps").value,p,a:1});
+ S.pa=(S.pa||[]).filter(x=>x!==p);
+ syncM();save();$("#npd").close();$("#q").value="";$("#fs").value="";$("#ft").value="";stats();open(M.length-1);
+};
+const addM=(pr,si)=>{
+ $("#ap").innerHTML=procs().map(p=>`<option>${esc(p)}</option>`).join("");
+ if(pr!==undefined){$("#ap").value=pr;const f=M.find(x=>x[2]===pr);if(si)$("#as").value=si;else if(f)$("#as").value=f[1]}else if(cur!==null){$("#ap").value=M[cur][2];$("#as").value=M[cur][1]}
+ $("#an").value="";$("#amsg").textContent="";$("#adlg").showModal();$("#an").focus();
+};
+
+$("#acl").onclick=()=>$("#adlg").close();
+$("#aok").onclick=()=>{
+ const n=$("#an").value.trim();
+ if(!n){$("#amsg").textContent="Enter the PLC or machine name.";return}
+ if(!$("#ap").value){$("#amsg").textContent="Add a process first with the Add process button.";return}
+ S.m.push({n,s:$("#as").value,p:$("#ap").value,a:1});
+ syncM();save();$("#adlg").close();$("#q").value="";$("#fs").value="";$("#ft").value="";
+ stats();open(M.length-1);
+};
+function rmx(i){
+ if(!S.m[i]||!S.m[i].a)return;
+ S.m.splice(i,1);
+ const d={};Object.keys(S.d).forEach(j=>{j=+j;if(j<i)d[j]=S.d[j];else if(j>i)d[j-1]=S.d[j]});
+ S.d=d;syncM();save();cur=null;
+ $("#formp").innerHTML='<div class="empty">Select a machine to start its survey.</div>';$("#wrap").classList.remove("f");list();stats();
+}
+const pcount=p=>S.m.filter(x=>x.p===p).length;
+function plist(){
+ $("#plist").innerHTML=procs().map((p,k)=>`<div class="prow"><input id="pi${k}" value="${esc(p)}" aria-label="Process name"><span class="cnt">${pcount(p)} PLC${pcount(p)===1?"":"s"}</span><button class="btn" data-ren="${k}">Rename</button><button class="btn" data-pdel="${k}">Delete</button></div>`).join("")||'<p class="hint">No processes yet.</p>';
+}
+function pdone(msg){
+ syncM();save();list();stats();
+ if($("#wrap").classList.contains("f")&&cur!==null&&cur<M.length)open(cur,true);
+ if(!$("#rep").hidden)report();
+ plist();$("#pmsg").textContent=msg;
+}
+$("#pm").onclick=()=>{plist();$("#pmsg").textContent="";$("#pnew").value="";$("#pdlg").showModal()};
+$("#pcl").onclick=()=>$("#pdlg").close();
+$("#pnadd").onclick=()=>{
+ const n=$("#pnew").value.trim();
+ if(!n){$("#pmsg").textContent="Type the new process name.";return}
+ if(procs().some(p=>p.toLowerCase()===n.toLowerCase())){$("#pmsg").textContent="That process already exists.";return}
+ S.pa.push(n);$("#pnew").value="";pdone("Process added. Use Add PLC / machine to put PLCs in it.");
+};
+$("#plist").addEventListener("click",e=>{
+ const P=procs(),a=e.target.dataset;
+ if(a.ren!==undefined){
+  const old=P[+a.ren],n=$("#pi"+a.ren).value.trim();
+  if(!n){$("#pmsg").textContent="Process name cannot be empty.";return}
+  if(n===old)return;
+  if(P.some(p=>p.toLowerCase()===n.toLowerCase()&&p!==old)){$("#pmsg").textContent="A process with that name already exists.";return}
+  S.m.forEach(x=>{if(x.p===old)x.p=n});S.pa=S.pa.map(p=>p===old?n:p);
+  pdone(`Renamed "${old}" to "${n}".`);
+ }
+ if(a.pdel!==undefined){
+  const old=P[+a.pdel],c=pcount(old),b=e.target;
+  if(!b.dataset.sure){b.dataset.sure=1;b.textContent=c?`Delete with ${c} PLC${c>1?"s":""}? Click again`:"Click again";return}
+  const m=[],d={};S.m.forEach((x,j)=>{if(x.p!==old){if(S.d[j])d[m.length]=S.d[j];m.push(x)}});
+  S.m=m;S.d=d;S.pa=S.pa.filter(p=>p!==old);cur=null;
+  $("#formp").innerHTML='<div class="empty">Select a machine to start its survey.</div>';$("#wrap").classList.remove("f");
+  pdone(`Deleted "${old}"${c?` and its ${c} PLC${c>1?"s":""}`:""}.`);
+ }
+});
+function siteList(){return[...new Set((S.st||[]).concat(M.map(m=>m[1])))]}
+function fillSites(){
+ const o=siteList().map(s=>`<option>${esc(s)}</option>`).join(""),f=$("#fs").value;
+ $("#fs").innerHTML='<option value="">All sites</option>'+o;$("#fs").value=f;$("#nps").innerHTML=o;$("#as").innerHTML=o;
+}
+
+$("#scl").onclick=()=>$("#sdlg").close();
+$("#sok").onclick=()=>{
+ const n=$("#snm").value.replace(/["<>&]/g,"").trim();
+ if(!n){$("#smsg").textContent="Type the site name.";return}
+ if(siteList().some(s=>s.toLowerCase()===n.toLowerCase())){$("#smsg").textContent="That site already exists.";return}
+ S.st.push(n);save();$("#smsg").textContent="Getting location...";getLoc(n,err=>{list();if($("#mdlg").open)mg();if(err){$("#smsg").textContent=err;return}$("#sdlg").close()});
+};
+const locTxt=s=>{const l=(S.loc||{})[s];return l?`Latitude ${l.lat}, longitude ${l.lng} (${l.acc?"accuracy "+l.acc+" m":"entered manually"})`:"Location not set"};
+function getLoc(s,cb){
+ if(!navigator.geolocation){cb("Location is not supported on this device.");return}
+ if(!window.isSecureContext){cb("Automatic location is not available when the app is opened as a local file. Use Enter manually, or install the app from its https address once.");return}
+ navigator.geolocation.getCurrentPosition(p=>{
+  (S.loc??={})[s]={lat:+p.coords.latitude.toFixed(6),lng:+p.coords.longitude.toFixed(6),acc:Math.round(p.coords.accuracy)};
+  save();cb("");
+ },e=>cb(e.code===1?"Location permission was denied. Location permission was denied. Allow location for this app in the browser or phone settings, then press Get location, or use Enter manually.":"Could not get the location. Press Get location to try again."),{enableHighAccuracy:true,timeout:15000,maximumAge:0});
+}
+function mg(){
+ $("#mtree").innerHTML=siteList().map(s=>{
+  const sx=M.map((_,i)=>i).filter(i=>M[i][1]===s),pl=[...new Set(sx.map(i=>M[i][2]))];
+  return`<div class="mg"><div class="mrow s0"><input value="${esc(s)}" aria-label="Site name"><span class="cnt">${sx.length} PLC${sx.length===1?"":"s"}</span><button class="btn" data-a="rs" data-s="${esc(s)}">Rename</button><button class="btn" data-a="ds" data-s="${esc(s)}">Delete</button></div><div class="mloc"><span>${locTxt(s)}</span><button class="btn" data-a="gl" data-s="${esc(s)}">${(S.loc||{})[s]?"Update location":"Get location"}</button><button class="btn" data-a="ml" data-s="${esc(s)}">Enter manually</button></div>`+pl.map(p=>{
+   const ix=sx.filter(i=>M[i][2]===p);
+   return`<div class="mrow s1"><input value="${esc(p)}" aria-label="Process name"><span class="cnt">${ix.length} PLC${ix.length===1?"":"s"}</span><button class="btn" data-a="rp" data-s="${esc(s)}" data-p="${esc(p)}">Rename</button><button class="btn" data-a="dp" data-s="${esc(s)}" data-p="${esc(p)}">Delete</button></div>`+ix.map(i=>`<div class="mrow s2"><input value="${esc(M[i][0])}" aria-label="PLC or machine name"><span class="cnt"></span><button class="btn" data-a="rm" data-i="${i}">Rename</button><button class="btn" data-a="dm" data-i="${i}">Delete</button></div>`).join("");
+  }).join("")+"</div>";
+ }).join("")||'<p class="hint">No sites yet.</p>';
+}
+function mdone(msg){
+ syncM();save();list();stats();
+ if($("#wrap").classList.contains("f")&&cur!==null&&cur<M.length)open(cur,true);
+ if(!$("#rep").hidden)report();
+ mg();$("#mmsg").textContent=msg;
+}
+function rmW(fn){
+ const m=[],d={};
+ S.m.forEach((x,j)=>{if(!fn(x)){if(S.d[j])d[m.length]=S.d[j];m.push(x)}});
+ S.m=m;S.d=d;cur=null;
+ $("#formp").innerHTML='<div class="empty">Select a machine to start its survey.</div>';$("#wrap").classList.remove("f");
+}
+$("#pm").onclick=()=>{mg();$("#mmsg").textContent="";$("#msn").value="";$("#mdlg").showModal()};
+$("#mcl").onclick=()=>$("#mdlg").close();
+$("#msa").onclick=()=>{
+ const n=$("#msn").value.replace(/["<>&]/g,"").trim();
+ if(!n){$("#mmsg").textContent="Type the site name.";return}
+ if(siteList().some(s=>s.toLowerCase()===n.toLowerCase())){$("#mmsg").textContent="That site already exists.";return}
+ S.st.push(n);$("#msn").value="";mdone(`Site "${n}" added. Getting its location...`);getLoc(n,err=>mdone(err?`Site "${n}" added. ${err}`:`Site "${n}" added. Location saved.`));
+};
+$("#mtree").addEventListener("click",e=>{
+ const b=e.target.closest("button[data-a]");if(!b)return;
+ const a=b.dataset.a,s=b.dataset.s,p=b.dataset.p,i=+b.dataset.i,msg=$("#mmsg");
+ const raw=(b.closest(".mrow")?.querySelector("input")?.value||"").trim(),nv=raw.replace(/["<>&]/g,"").trim();
+ const sure=t=>{if(b.dataset.sure)return true;b.dataset.sure=1;b.textContent=t;return false};
+ if(a==="ml"){const t=prompt("Enter latitude, longitude (example: 14.5547, 121.0244)");if(t===null)return;const m=t.match(/^\s*(-?\d+(?:\.\d+)?)\s*[,; ]\s*(-?\d+(?:\.\d+)?)\s*$/);if(!m||Math.abs(+m[1])>90||Math.abs(+m[2])>180){msg.textContent="Could not read that. Use latitude, longitude, for example 14.5547, 121.0244.";return}(S.loc??={})[s]={lat:+m[1],lng:+m[2],acc:0};save();mdone(`Location saved for "${s}".`);return}
+ if(a==="gl"){msg.textContent="Getting location...";getLoc(s,err=>mdone(err||`Location saved for "${s}".`));return}
+ if(a==="rs"){
+  if(!nv){msg.textContent="Site name cannot be empty.";return}
+  if(nv===s)return;
+  if(siteList().some(x=>x.toLowerCase()===nv.toLowerCase()&&x!==s)){msg.textContent="A site with that name already exists.";return}
+  S.m.forEach(x=>{if(x.s===s)x.s=nv});S.st=S.st.map(x=>x===s?nv:x);if(S.loc[s]){S.loc[nv]=S.loc[s];delete S.loc[s]}mdone(`Renamed site "${s}" to "${nv}".`);
+ }
+ if(a==="ds"){
+  const c=S.m.filter(x=>x.s===s).length;
+  if(!sure(c?`Delete with ${c} PLC${c>1?"s":""}? Click again`:"Click again"))return;
+  rmW(x=>x.s===s);S.st=S.st.filter(x=>x!==s);delete S.loc[s];mdone(`Deleted site "${s}"${c?` and its ${c} PLC${c>1?"s":""}`:""}.`);
+ }
+ if(a==="rp"){
+  if(!raw){msg.textContent="Process name cannot be empty.";return}
+  if(raw===p)return;
+  if(S.m.some(x=>x.s===s&&x.p.toLowerCase()===raw.toLowerCase()&&x.p!==p)){msg.textContent="That process already exists in this site.";return}
+  S.m.forEach(x=>{if(x.s===s&&x.p===p)x.p=raw});mdone(`Renamed process "${p}" to "${raw}".`);
+ }
+ if(a==="dp"){
+  const c=S.m.filter(x=>x.s===s&&x.p===p).length;
+  if(!sure(`Delete with ${c} PLC${c>1?"s":""}? Click again`))return;
+  rmW(x=>x.s===s&&x.p===p);mdone(`Deleted process "${p}" and its ${c} PLC${c>1?"s":""}.`);
+ }
+ if(a==="rm"){
+  if(!raw){msg.textContent="PLC name cannot be empty.";return}
+  S.m[i].n=raw;mdone(`Renamed PLC to "${raw}".`);
+ }
+ if(a==="dm"){
+  if(!sure("Click again"))return;
+  const t=S.m[i];rmW(x=>x===t);mdone("PLC deleted.");
+ }
+});
+
+const PH={};
+function pdbOpen(){return new Promise((res,rej)=>{try{const r=indexedDB.open("ctk-dole-photos",1);r.onupgradeneeded=()=>r.result.createObjectStore("p");r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)}catch(e){rej(e)}})}
+const pdbTx=(m,f)=>pdbOpen().then(db=>new Promise((res,rej)=>{const t=db.transaction("p",m),q=f(t.objectStore("p"));t.oncomplete=()=>{db.close();res(q&&q.result)};t.onerror=t.onabort=()=>{db.close();rej(t.error)}}));
+const phIds=i=>((S.d[i]||{}).ph||[]);
+const phThumbs=i=>phIds(i).filter(id=>PH[id]).map((id,n)=>`<div class="th"><img src="${PH[id]}" alt="Photo ${n+1}" data-view="${id}"><button class="btn" data-rph="${id}" aria-label="Delete photo ${n+1}">&times;</button></div>`).join("");
+const photoBlock=i=>`<fieldset><legend>Photos</legend><p class="hint">On a phone this lets you take a photo or choose one from the gallery. On a computer it opens a file picker.</p><button class="btn p" id="phb">Add photo</button><p class="hint" id="phm"></p><div class="phg" id="phg">${phThumbs(i)}</div></fieldset>`;
+const phGal=i=>{const x=phIds(i).filter(id=>PH[id]);return x.length?`<h4 class="rphh">Photos (${x.length})</h4><div class="rph">${x.map(id=>`<figure><img src="${PH[id]}" alt="Machine photo"></figure>`).join("")}</div>`:""};
+function phRender(){const g=$("#phg");if(g&&cur!==null)g.innerHTML=phThumbs(cur);if(!$("#rep").hidden)report()}
+function shrink(f){return new Promise((res,rej)=>{const u=URL.createObjectURL(f),im=new Image();im.onload=()=>{const k=Math.min(1,1280/Math.max(im.naturalWidth,im.naturalHeight)),c=document.createElement("canvas");c.width=Math.round(im.naturalWidth*k);c.height=Math.round(im.naturalHeight*k);c.getContext("2d").drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);res(c.toDataURL("image/jpeg",.72))};im.onerror=()=>{URL.revokeObjectURL(u);rej(new Error("unreadable"))};im.src=u})}
+function rmPh(i,id){S.d[i].ph=phIds(i).filter(x=>x!==id);delete PH[id];pdbTx("readwrite",o=>o.delete(id)).catch(()=>{});save();list();stats();phRender()}
+$("#phi").onchange=async e=>{
+ const fs=[...e.target.files],i=cur;e.target.value="";if(i===null||!fs.length)return;
+ const m=$("#phm");if(m)m.textContent="Saving photo...";let n=0,bad=0;
+ for(const f of fs){try{const d=await shrink(f),id="p"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);await pdbTx("readwrite",o=>o.put(d,id));PH[id]=d;((S.d[i]??={}).ph??=[]).push(id);save();n++}catch(x){bad++}}
+ list();stats();if(cur===i){phRender();const m2=$("#phm");if(m2)m2.textContent=(n?`${n} photo${n===1?"":"s"} added. `:"")+(bad?`${bad} could not be read or saved.`:"")}
+};
+$("#rb").addEventListener("click",e=>{const im=e.target.closest(".rph img");if(im){$("#pvi").src=im.src;$("#pvd").showModal()}});
+$("#pvc").onclick=()=>$("#pvd").close();
+async function phLoad(){
+ try{const db=await pdbOpen();await new Promise(res=>{const o=db.transaction("p").objectStore("p").openCursor();o.onsuccess=e=>{const c=e.target.result;if(c){PH[c.key]=c.value;c.continue()}else res()};o.onerror=()=>res()});db.close();
+  const used=new Set(Object.values(S.d).flatMap(d=>d.ph||[]));
+  Object.keys(PH).forEach(id=>{if(!used.has(id)){delete PH[id];pdbTx("readwrite",o=>o.delete(id)).catch(()=>{})}});
+ }catch(e){}
+ phRender();
+}
+const getMachines=()=>M;
+function buildPdf(){
+ const W=595.28,H=841.89,M=40,CW=W-2*M,FB=H-M-14,cv=document.createElement("canvas").getContext("2d");
+ const MAP={"\u2018":"'","\u2019":"'","\u201c":'"',"\u201d":'"',"\u2013":"-","\u2014":"-","\u2026":"...","\u00d7":"x"};
+ const lat=s=>String(s).replace(/[^\x20-\x7e\xa0-\xff]/g,c=>MAP[c]||"?").replace(/[\\()]/g,"\\$&");
+ const wid=(t,z,st)=>{cv.font=(st==="b"?"bold ":st==="i"?"italic ":"")+z+"px Helvetica,Arial,sans-serif";return cv.measureText(t).width};
+ const wrap=(t,z,st,mw)=>{const out=[];String(t).split("\n").forEach(p=>{let cur="";p.split(/\s+/).filter(Boolean).forEach(w=>{const test=cur?cur+" "+w:w;if(wid(test,z,st)<=mw){cur=test;return}if(cur)out.push(cur);while(wid(w,z,st)>mw&&w.length>1){let k=w.length;while(k>1&&wid(w.slice(0,k),z,st)>mw)k--;out.push(w.slice(0,k));w=w.slice(k)}cur=w});out.push(cur)});return out};
+ const pages=[[]],imgs=[],imap={};let y=M;
+ const P=()=>pages[pages.length-1],np=()=>{pages.push([]);y=M},need=h=>{if(y+h>FB)np()};
+ const txt=(s,x,by,z,st,g)=>P().push(`${g||0} g BT /${st==="b"?"F2":st==="i"?"F3":"F1"} ${z} Tf ${x.toFixed(2)} ${(H-by).toFixed(2)} Td (${lat(s)}) Tj ET`);
+ const rule=(yy,g,w)=>P().push(`${g} G ${w} w ${M} ${(H-yy).toFixed(2)} m ${W-M} ${(H-yy).toFixed(2)} l S`);
+ const img=src=>{if(imap[src])return imap[src];const raw=atob(src.split(",")[1]),b=new Uint8Array(raw.length);for(let i=0;i<raw.length;i++)b[i]=raw.charCodeAt(i);let w=0,h=0,nc=3,i=2;while(i<b.length-9){if(b[i]!==255){i++;continue}const mk=b[i+1];if(mk>=192&&mk<=207&&mk!==196&&mk!==200&&mk!==204){h=b[i+5]<<8|b[i+6];w=b[i+7]<<8|b[i+8];nc=b[i+9];break}i+=2+(b[i+2]<<8|b[i+3])}const o={b,w,h,nc,n:imgs.length+1};imgs.push(o);return imap[src]=o};
+ const nd=getMachines().filter((_,i)=>st(i)===2).length,c=x=>getMachines().filter((_,i)=>v(i,"p2")===x).length;
+ wrap("Dole PLC Upgrade Phase 2: machine site survey report",15,"b",CW).forEach(l=>{txt(l,M,y+15,15,"b");y+=19});
+ y+=2;wrap(`Surveyor: ${S.by||"-"}. Survey date: ${S.date||"-"}. Machines done: ${nd} of ${getMachines().length}. In Phase 2: ${c("Yes")}. Not in Phase 2: ${c("No")}. To confirm: ${c("To confirm")}.`,9,"r",CW).forEach(l=>{txt(l,M,y+9,9,"r",.25);y+=12});
+ y+=6;
+ const root=document.createElement("div");root.innerHTML=reportHTML();
+ if(!root.children.length){txt("No survey entries yet.",M,y+10,10,"i",.4)}
+ [...root.children].forEach(sec=>{
+  const h2=sec.querySelector(".rsite"),sn=h2.querySelector(".site").textContent,cn=[...h2.querySelectorAll(".cnt")].map(x=>x.textContent).join("   |   ");
+  need(60);y+=8;txt(sn,M,y+13,13,"b");y+=17;wrap(cn,9,"r",CW).forEach(l=>{txt(l,M,y+9,9,"r",.3);y+=12});y+=2;rule(y,0,1.2);y+=8;
+  [...sec.children].forEach(el=>{
+   if(el.tagName==="H3"){need(50);y+=6;const pn=el.childNodes[0].textContent,pc=el.querySelector(".cnt");txt(pn,M,y+11,11,"b");if(pc)txt(pc.textContent,M+wid(pn,11,"b")+8,y+11,9,"r",.4);y+=17;return}
+   if(el.tagName!=="ARTICLE")return;
+   need(70);y+=4;rule(y,.6,.5);y+=13;
+   const nm=el.querySelector(".rh h3").textContent,tg=el.querySelector(".rh .tag").textContent;
+   txt(nm,M,y,10.5,"b");txt(tg,W-M-wid(tg,9,"r"),y,9,"r",.3);y+=13;
+   const sb=el.querySelector(".sub");if(sb)wrap(sb.textContent,9,"r",CW).forEach(l=>{txt(l,M,y,9,"r",.4);y+=11});
+   y+=2;
+   [...el.children].forEach(ch=>{
+    if(ch.tagName==="DL"){const k=[...ch.children];for(let q=0;q<k.length;q++){const dt=k[q];if(dt.tagName!=="DT")continue;
+      if(dt.classList.contains("rgrp")){need(40);y+=5;rule(y,.8,.4);y+=12;txt(dt.textContent,M,y,9.5,"b");y+=5;continue}
+      const dd=k[q+1],na=dd&&dd.classList.contains("na"),ls=wrap(dd?dd.textContent:"",9,na?"i":"r",CW-175),h=Math.max(1,ls.length)*11+3;
+      need(h);txt(dt.textContent,M+6,y+9,8.5,"r",.35);ls.forEach((l,j)=>txt(l,M+170,y+9+j*11,9,na?"i":"r",na?.5:0));y+=h}}
+    else if(ch.classList.contains("rphh")){
+     const ps=[...el.querySelectorAll(".rph img")].map(i=>img(i.src)),cw=(CW-8)/2,mh=240,fit=o=>{const k=Math.min(cw/o.w,mh/o.h);return[o.w*k,o.h*k]};
+     let first=true;for(let q=0;q<ps.length;q+=2){const row=[ps[q],ps[q+1]].filter(Boolean),dims=row.map(fit),rh=Math.max(...dims.map(d=>d[1]));
+      need((first?18:0)+rh+8);if(first){y+=4;txt(ch.textContent,M,y+9,9.5,"b");y+=14;first=false}
+      row.forEach((o,j)=>{const[w,h]=dims[j],x=M+j*(cw+8);P().push(`q ${w.toFixed(2)} 0 0 ${h.toFixed(2)} ${x.toFixed(2)} ${(H-y-h).toFixed(2)} cm /Im${o.n} Do Q`)});y+=rh+8}}
+   });
+   y+=4;
+  });
+ });
+ const d8=new Date().toLocaleDateString(),N=pages.length;
+ pages.forEach((p,n)=>{const t=`Page ${n+1} of ${N}`;p.push(`0.45 g BT /F1 8 Tf ${M} 24 Td (${lat("Dole PLC Phase 2 survey report, "+d8)}) Tj ET`);p.push(`0.45 g BT /F1 8 Tf ${(W-M-wid(t,8,"r")).toFixed(2)} 24 Td (${t}) Tj ET`)});
+ const bin=s=>{const u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i)&255;return u};
+ const out=[],offs=[];let pos=0;const put=x=>{const u=typeof x==="string"?bin(x):x;out.push(u);pos+=u.length};
+ const ob=(n,f)=>{offs[n]=pos;put(`${n} 0 obj\n`);f();put("\nendobj\n")};
+ const ni=imgs.length,base=6+ni,tot=base+2*N;
+ put("%PDF-1.4\n%\u00e2\u00e3\u00cf\u00d3\n");
+ ob(1,()=>put("<< /Type /Catalog /Pages 2 0 R >>"));
+ ob(2,()=>put(`<< /Type /Pages /Kids [${pages.map((_,k)=>`${base+2*k+1} 0 R`).join(" ")}] /Count ${N} >>`));
+ ["Helvetica","Helvetica-Bold","Helvetica-Oblique"].forEach((f,k)=>ob(3+k,()=>put(`<< /Type /Font /Subtype /Type1 /BaseFont /${f} /Encoding /WinAnsiEncoding >>`)));
+ imgs.forEach((o,k)=>ob(6+k,()=>{put(`<< /Type /XObject /Subtype /Image /Width ${o.w} /Height ${o.h} /ColorSpace /${o.nc===1?"DeviceGray":"DeviceRGB"} /BitsPerComponent 8 /Filter /DCTDecode /Length ${o.b.length} >>\nstream\n`);put(o.b);put("\nendstream")}));
+ const res=`<< /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> /XObject << ${imgs.map(o=>`/Im${o.n} ${5+o.n} 0 R`).join(" ")} >> >>`;
+ pages.forEach((p,k)=>{const cs=bin(p.join("\n"));ob(base+2*k,()=>{put(`<< /Length ${cs.length} >>\nstream\n`);put(cs);put("\nendstream")});ob(base+2*k+1,()=>put(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${W} ${H}] /Resources ${res} /Contents ${base+2*k} 0 R >>`))});
+ const xp=pos;put(`xref\n0 ${tot}\n0000000000 65535 f \n`);for(let n=1;n<tot;n++)put(String(offs[n]).padStart(10,"0")+" 00000 n \n");
+ put(`trailer\n<< /Size ${tot} /Root 1 0 R >>\nstartxref\n${xp}\n%%EOF`);
+ const all=new Uint8Array(pos);let o=0;out.forEach(u=>{all.set(u,o);o+=u.length});return all;
+}
+function dlPdf(f){const a=document.createElement("a");a.href=URL.createObjectURL(f);a.download=f.name;document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),1500)}
+async function savePdf(btn){
+ const tx=btn.textContent;btn.disabled=true;btn.textContent="Preparing PDF...";
+ try{
+  const f=new File([buildPdf()],"Dole_PLC_Phase2_Survey_Report.pdf",{type:"application/pdf"});
+  if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:"Dole PLC survey report"})}catch(e){if(!e||e.name!=="AbortError")dlPdf(f)}}else dlPdf(f);
+ }catch(e){btn.textContent="PDF failed";setTimeout(()=>{btn.textContent=tx},2500);btn.disabled=false;return}
+ btn.textContent=tx;btn.disabled=false;
+}
+$("#pdf2").onclick=e=>savePdf(e.currentTarget);$("#pdfm").onclick=e=>savePdf(e.currentTarget);
+$("#prt").onclick=printAll;$("#prt2").onclick=printAll;
+list();stats();tab("d",1);phLoad();try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
+if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register("sw.js").catch(()=>{});
+try{history.replaceState({t:"d"},"")}catch(e){}
+addEventListener("popstate",e=>{const t=e.state&&e.state.t||"d";if(t==="s"&&!$("#wrap").hidden)return;tab(t,1)});
+</script>
+</body>
+</html>
